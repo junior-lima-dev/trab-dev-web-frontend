@@ -1,0 +1,153 @@
+.product-detail-container{
+    padding: 100px 20px 100px 20px;
+    display: flex;
+    max-width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.product-detail-default {
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(204, 204, 204, 0.8);
+}
+
+.left-container{
+    width: 56%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 10px 16px 10px;
+}
+
+.right-container{
+    width: 36%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+.image-container {
+    width: 80%;
+    transition: transform .2s;
+    /* border-left: 1px solid rgb(197, 197, 197); */
+    /* height: 40%; */
+}
+
+.image-container:hover {
+    -ms-transform: scale(1.3); /* IE 9 */
+    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    transform: scale(1.3);
+    border: 1px solid rgb(197, 197, 197);
+}
+
+.checked {
+    color: orange;
+}
+
+.preview-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: space-between;
+ width: 20%;
+ /* padding: 0px 8px 0px 0px; */
+}
+
+.preview-card-container {
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
+    transition: transform .2s;
+}
+
+.preview-card-container:hover {
+    -ms-transform: scale(1.3); /* IE 9 */
+    -webkit-transform: scale(1.3); /* Safari 3-8 */
+    transform: scale(1.3); 
+}
+
+/* .image {
+    width: 70%;
+} */
+
+.assessment-container {
+    display: flex;
+    align-items: center;
+}
+
+.assessment-text {
+    background-color: tomato;
+}
+
+.starts-container {
+    display: flex;
+    width: 40%;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.button-container {
+    display: flex;
+    background-color: #ff8000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 6px 0px 6px 0px;
+    color: white; 
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.button-container:hover {
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.price-text{
+    margin-top: 25px;
+    font-size: 18px;
+}
+
+.price-text > span {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.info-container {
+    margin-top: 35px;
+}
+
+.info-text {
+    font-size: 20px;
+    text-align: center;
+}
+
+/* .info-table {
+    
+} */
+
+.info-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between
+}
+
+.info-header {
+    background-color: rgb(242, 242, 242);
+    padding: 3px;
+    text-align: center;
+    width: 48%;
+}
+
+.info-value {
+    padding: 3px;
+    text-align: center;
+    width: 48%;
+}
