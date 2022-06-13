@@ -19,7 +19,7 @@
                 <i class="ph-wrench"></i>
               </a>
             </div>
-            <p class="cartas-meio-titulo"> <%= article.title %> </p>
+            <p class="cartas-meio-titulo accessible-font-size"> <%= article.title %> </p>
             <p class="cartas-meio-texto accessible-font-size">
                 <%= article.description %>
             </p>
@@ -55,30 +55,6 @@
           </div> -->
         </div>
 
-        <!-- BARRA INFERIOR -->
-        <div class="barra-inferior">
-          <p class="barra-inferior-texto">
-            Cadastre-se para receber novidades e ofertas por email!
-          </p>
-          <div class="barra-inferior-info">
-            <div>
-              <input
-                class="barra-inferior-nome"
-                type="text"
-                name="info-nome"
-                placeholder="Digite seu nome"
-              />
-            </div>
-            <div>
-              <input
-                class="barra-inferior-email"
-                type="text"
-                name="info-email"
-                placeholder="Digite seu e-mail"
-              />
-            </div>
-            <button class="botao-inferior">Enviar</button>
-          </div>
-        </div>
+       
 
 <%- include('../partials/layout-footer') %>

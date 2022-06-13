@@ -6,7 +6,7 @@ const app = express();
 const porta = 9090;
 const rootPath = __dirname + "/app/";
 app.set("view engine", "ejs");
-app.set("views","src/views");
+
 
 const user = [
   {
