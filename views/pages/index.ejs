@@ -1,0 +1,60 @@
+<%- include('../partials/layout-header') %>
+      
+        <!-- BANNER DO TOPO -->
+        <!-- <div class="banner">
+          <div class="texto-flutuante">
+            <p class="banner-text">super descontos!</p>
+            <p class="banner-subtext">* Preços válidos até data indicada</p>
+            <a class="btn" href="#">Saiba mais</a>
+          </div>
+          <img src="img/banner-produto.jpg" class="banner-img" alt="banner de promoções" />
+        </div> -->
+
+        <!-- CARTAS DO MEIO -->
+        <div class="meio">
+          <% articles.forEach((article)=> { %>
+          <div class="cartas-meio">
+            <div class="meio-flex">
+              <a class="cartas-link" href="https://google.com">
+                <i class="ph-wrench"></i>
+              </a>
+            </div>
+            <p class="cartas-meio-titulo accessible-font-size"> <%= article.title %> </p>
+            <p class="cartas-meio-texto accessible-font-size">
+                <%= article.description %>
+            </p>
+          </div>
+          <% }) %>
+          <!-- <div class="cartas-meio">
+            <div class="meio-flex">
+              <a class="cartas-link" href="https://google.com">
+                <i class="ph-storefront"></i>
+              </a>
+            </div>
+            <p class="cartas-meio-titulo">PERTO DE VOCÊ</p>
+            <p class="cartas-meio-texto">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea.
+            </p>
+          </div>
+          <div class="cartas-meio">
+            <div class="meio-flex">
+              <a class="cartas-link" href="https://google.com">
+                <i class="ph-newspaper"></i>
+              </a>
+            </div>
+            <p class="cartas-meio-titulo">NOTÍCIAS</p>
+            <p class="cartas-meio-texto">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea.
+            </p>
+          </div> -->
+        </div>
+
+       
+
+<%- include('../partials/layout-footer') %>
