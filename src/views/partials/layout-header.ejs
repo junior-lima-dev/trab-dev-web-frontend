@@ -15,9 +15,10 @@
     <link href="product-detail.css" rel="stylesheet">
     <!-- <link href="stock.css" rel="stylesheet"> -->
     <script src="https://unpkg.com/phosphor-icons"></script>
+    <script type = "text/javascript" src = "js/home.js"></script>
   </head>
-  <body>
-    <div class="cabecario">
+  <body class="accessible-background-color">
+    <div class="cabecario accessible-background-color">
       <header> 
         <!-- LOGO + PESQUISA + LOGIN -->
         <div class="barra-topo">
@@ -51,20 +52,19 @@
           <button class="nav-botao">SOBRE</button>
           <button class="nav-botao">CONTATOS</button>
         </div>
-        <div style="display: flex; flex-direction: row; width: 8%; align-items: center; margin-right: 2%;">
-          <button onclick="teste()" style="border-radius: 15px; width: 30px; height: 30px; border: none; background-color: rgb(255, 128, 0);">
-            <span class="fa fa-font" style="font-size: 16px; color: white;"></span>
+        <div class="accessible-container">
+          <button onclick="changeFontSize()" class="accessible-button">
+            <span class="fa fa-font accessible-button-icon"></span>
           </button>
 
-          <button style="border-radius: 15px; width: 30px; height: 30px; border: none; margin-left: 15%; background-color: rgb(255, 128, 0);">
-            <!-- <span class="fa-solid fa-sun" style="font-size: 25px; color: white;"></span> -->
-            <span class="fa fa-font" style="font-size: 16px; color: white;"></span>
+          <button onclick="changeBackGroundColor()" class="accessible-button" style="margin-left: 15%;">
+            <span class="fa fa-adjust accessible-button-icon"></span>
           </button>
         </div>
       </nav>
     </div>
 
-    <div class="conteudo-central">
+    <div class="conteudo-central accessible-background-color">
 
       <!--  -->
 

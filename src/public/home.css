@@ -130,6 +130,20 @@ nav {
   transition-duration: 200ms;
 }
 
+.nav-botao-access {
+  color: rgb(255, 128, 0);
+  background-color: black;
+  height: 50px;
+  border: none;
+  padding: 0 15px;
+}
+
+.nav-botao-access:hover {
+  background-color: red;
+  color: blue;
+  transition-duration: 200ms;
+}
+
 /* FIM NAV */
 
 /* COMEÇO BANNER TOPO */
@@ -387,4 +401,34 @@ footer {
 
 .rodape-link:hover {
   color: rgb(255, 128, 0);
+}
+
+.accessible-font-size {
+  font-size: 16px;
+}
+
+.accessible-container {
+  display: flex; 
+  flex-direction: row; 
+  width: 8%; 
+  align-items: center; 
+  margin-right: 2%;
+}
+
+.accessible-button {
+  border-radius: 15px; 
+  width: 30px; 
+  height: 30px; 
+  border: none; 
+  background-color: rgb(255, 128, 0);
+}
+
+.accessible-button-icon {
+  font-size: 16px; 
+  color: white;
+}
+
+.accessible-background-color {
+  /*background-color: black;*/
+  background-color: white;
 }
