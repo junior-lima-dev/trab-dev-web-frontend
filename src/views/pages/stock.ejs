@@ -15,9 +15,10 @@
     </div>
 
     <ul id ="product-list">
+      <% stock.forEach((stock)=> { %>
       <li>
-        <span class="product-text">Produto 1</span>
-        <span class="product-quantity"> Qtd: 10</span>
+        <span class="product-text"><%= stock.title %></span>
+        <span class="product-quantity"> <%= stock.qtd %></span>
         <div>
           <button class="button-action">
             <i class="far fa-edit"></i>
@@ -27,7 +28,8 @@
           </button>
         </div>
       </li>
-      <li>
+      <% }) %>
+    <!--  <li>
         <span class="product-text">Produto 2</span>
         <span class="product-quantity"> Qtd: 5</span>
         <div>
@@ -62,7 +64,7 @@
             <i class="far fa-trash-alt"></i>
           </button>
         </div>
-      </li>
+      </li>-->
     </ul>
   </div>
 <%- include('../partials/admin-footer') %>

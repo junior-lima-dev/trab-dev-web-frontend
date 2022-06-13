@@ -15,8 +15,9 @@
       </div>
 
       <ul id ="relatorio-list">
+        <% reports.forEach((reports)=> { %>
         <li>
-          <span class="relatorio-text">Vendas Geral</span>
+          <span class="relatorio-text"><%= reports.title %></span>
           <div>
             <button class="button-action">
               <i class="far fa-edit"></i>
@@ -29,6 +30,8 @@
             </button>
           </div>
         </li>
+        <% }) %>
+        <!--
         <li>
           <span class="relatorio-text">Acessos ao site</span>
           <div>
@@ -71,6 +74,7 @@
             </button>
           </div>
         </li>
+        -->
       </ul>
     </div>
 
