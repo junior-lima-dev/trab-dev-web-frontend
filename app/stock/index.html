@@ -14,7 +14,6 @@
         <link rel="icon" href="img/logo-preto-minimalista.png"/>
         <link rel="stylesheet" href="style/normalize.css">
         <link rel="stylesheet" href="stock.css">
-        <link rel="stylesheet" href="relatorio.css">
         <!-- <link rel="stylesheet" href="style/stock-acessibility.css"> -->
        
     </head>
@@ -23,10 +22,10 @@
       <div class="cabecario">
       <header class="header">
         <div class="barra-topo">
-          <div class="logo-topo" onclick="location.href='/'">
+          <div class="logo-topo">
             <img src="img/logo-preto_v2.png" alt="imagem-logo"/>
           </div>
-          <button class="login-topo" onclick="location.href='/login-register'">Login / Cadastro</button>
+          <button class="login-topo">Login / Cadastro</button>
         </div>
       </header>
       </div>
@@ -35,7 +34,7 @@
         <div class="side-menu"><nav class="main-menu">
           <ul>
               <li>
-                  <a href="/">
+                  <a href="#">
                       <i class="fa fa-home fa-2x"></i>
                       <span class="nav-text">
                           Tela principal
@@ -43,7 +42,7 @@
                   </a>
               </li>
               <li class="has-subnav">
-                  <a href="/stock">
+                  <a href="#">
                       <i class="fa fa-laptop fa-2x"></i>
                       <span class="nav-text">
                           Estoque
@@ -61,7 +60,7 @@
                   
               </li>
               <li>
-                  <a href="/reports">
+                  <a href="#">
                       <i class="fa fa-list-alt"></i>
                       <span class="nav-text">
                           Relatórios e Gráficos
@@ -106,3 +105,99 @@
           </ul>
       </nav>
     </div>
+
+    <div class = "product-content">
+
+      <div class="search-container">
+        <div id="divBusca">
+          <input type="text" id="txtBusca" placeholder="Buscar produto..."/>
+          <button type="submit"><i class="fas fa-search"></i></button>
+          
+        </div>
+  
+        <div class="button-add">
+          <button id="add-button"> Adicionar Produto</button>
+  
+        </div>
+      </div>
+
+      <ul id ="product-list">
+        <li>
+          <span class="product-text">Produto 1</span>
+          <span class="product-quantity"> Qtd: 10</span>
+          <div>
+            <button class="button-action">
+              <i class="far fa-edit"></i>
+            </button>
+            <button class="button-action">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+        <li>
+          <span class="product-text">Produto 2</span>
+          <span class="product-quantity"> Qtd: 5</span>
+          <div>
+            <button class="button-action">
+              <i class="far fa-edit"></i>
+            </button>
+            <button class="button-action">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+        <li>
+          <span class="product-text">Produto 3</span>
+          <span class="product-quantity" > Qtd: 3</span>
+          <div>
+            <button class="button-action">
+              <i class="far fa-edit"></i>
+            </button>
+            <button class="button-action">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+        <li>
+          <span class="product-text">Produto 4</span>
+          <span class="product-quantity"> Qtd: 12</span>
+          <div>
+            <button class="button-action">
+              <i class="far fa-edit"></i>
+            </button>
+            <button class="button-action">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+
+
+
+    </div>
+
+        <footer class="footer">
+            <div class="container">
+                <h2 class="footer__logo">Infusion</h2>
+        
+                <p>Nam mi enim, auctor non ultricies a, fringilla eu risus. Praesent vitae lorem et elit tincidunt accumsan suscipit eu libero. Maecenas diam est, venenatis vitae dui in, vestibulum mollis arcu. Donec eu nibh tincidunt, dapibus sem eu, aliquam dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum consectetur commodo eros, vitae laoreet lectus aliq</p>
+
+                <p>aliquam dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum consectetur commodo eros, vitae laoreet lectus aliq</p>
+
+              <ul class="footer__links">
+                <li><a href="#">List One</a></li>
+                <li><a href="#">Page Two</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Work</a></li>
+                <li><a href="#">Contact Me</a></li>
+              </ul>
+            </div>
+        </footer>
+        
+        <script src="js/menu.js"></script>        
+        <script src="js/carousel.js"></script>
+
+        <script src="js/main.js"></script>
+
+    </body>
+</html>

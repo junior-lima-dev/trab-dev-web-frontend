@@ -13,16 +13,14 @@
     <link href="products.css" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
     <link href="product-detail.css" rel="stylesheet">
-    <!-- <link href="stock.css" rel="stylesheet"> -->
     <script src="https://unpkg.com/phosphor-icons"></script>
-    <script type = "text/javascript" src = "js/home.js"></script>
   </head>
-  <body class="accessible-background-color">
-    <div class="cabecario accessible-background-color">
+  <body>
+    <div class="cabecario">
       <header> 
         <!-- LOGO + PESQUISA + LOGIN -->
         <div class="barra-topo">
-          <div class="logo-topo" onclick="location.href='/'">
+          <div class="logo-topo">
             <img src="img/logo-preto_v2.png" alt="logo"/>
           </div>
           <div class="busca-topo">
@@ -43,8 +41,8 @@
       </header>
 
       <!-- MENU DO TOPO -->
-      <nav style="display: flex; flex-direction: row;">
-        <div class="barra-nav accessible-font-size" >
+      <nav>
+        <div class="barra-nav">
           <button class="nav-botao">CATEGORIAS</button>
           <button class="nav-botao" onclick="location.href='/products'">PRODUTOS</button>
           <button class="nav-botao">PROMOÇÕES</button>
@@ -52,20 +50,39 @@
           <button class="nav-botao">SOBRE</button>
           <button class="nav-botao">CONTATOS</button>
         </div>
-        <div class="accessible-container">
-          <button onclick="changeFontSize()" class="accessible-button">
-            <span class="fa fa-font accessible-button-icon"></span>
-          </button>
-
-          <button onclick="changeBackGroundColor()" class="accessible-button" style="margin-left: 15%;">
-            <span class="fa fa-adjust accessible-button-icon"></span>
-          </button>
-        </div>
       </nav>
     </div>
 
-    <div class="conteudo-central accessible-background-color">
+    <div class="conteudo-central">
+      
+        <%- secao1 %>
+      
+      <!-- RODAPÉ -->
+      <footer >
+        <div class="rodape-esquerda">
+          <p><a class="rodape-link" href="#">Lojas</a></p>
+          <p><a class="rodape-link" href="#">Promoções</a></p>
+          <p><a class="rodape-link" href="#">Categorias</a></p>
+          <p><a class="rodape-link" href="#">Notícias</a></p>
+          <p><a class="rodape-link" href="#">Contato</a></p>
+        </div>
+        <div class="rodape-direita">
+          <p>
+            Copyright © Info Center, Todos os Direitos Reservados. <br />
+            Info Center Comércio Ltda. – Matriz – CNPJ: XX.XXX.XXX/XXXX-XX
+          </p>
+        </div>
+      </footer>
+    </div>
 
-      <!--  -->
+    <script>
 
-      <!--  -->
+      function insertParam(){
+        let url = new URL('http://localhost:9090/products'); 
+        url.searchParams.append('x', 42); 
+        // alert(url);
+        location.href=url;
+      }
+    </script>
+  </body>
+</html>
