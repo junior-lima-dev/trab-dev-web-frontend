@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
+const fs = require("fs/promises");
 
 const app = express();
 const porta = 9090;
@@ -37,37 +38,17 @@ const user = [
   },
 ];
 
-const stock = [
-  {
-    title: "Produto teste 1",
-    qtd:10
-  },
-  {
-    title: "Produto teste 2",
-    qtd:5
-  },
-  {
-    title: "Produto teste 3",
-    qtd:17
-  },
-  {
-    title: "Produto teste 4",
-    qtd:12
-  },
-];
-
-
 const reports = [
   {
     title: "VEndas",
   },
   {
     title: "Faturamento",
-    qtd:5
+    qtd: 5,
   },
   {
     title: "Vendas Diária",
-    qtd:17
+    qtd: 17,
   },
   {
     title: "Teste",
@@ -76,54 +57,120 @@ const reports = [
 
 app.use(express.static("public"));
 
-// app.use(expressLayouts);
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.get("/", function (req, res) {
-  // res.sendFile(path.join(rootPath+'home/index.html'));
   res.render("pages/index", {
     articles: user,
   });
 });
 
-app.get("/products", function (req, res) {
-  // res.sendFile(path.join(rootPath+'products/index.html'));
+app.get("/products", async function (req, res) {
+  async function loadData() {
+    const fileName = __dirname + "/data/products.json";
+    try {
+      const data = await fs.readFile(fileName, "utf8");
+
+      const productsData = JSON.parse(data);
+
+      return productsData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const productsData = await loadData();
 
   res.render("pages/products", {
-    data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    data: productsData,
   });
 });
 
 app.get("/reports", function (req, res) {
-  // res.sendFile(path.join(rootPath + "reports/index.html"));
-
-  res.render("pages/reports",{
-    reports:reports
+  res.render("pages/reports", {
+    reports: reports,
   });
 });
 
 app.get("/login-register", function (req, res) {
-  // res.sendFile(path.join(rootPath + "reports/index.html"));
-
   res.render("pages/login-register");
 });
 
-app.get("/stock", function (req, res) {
-  // res.sendFile(path.join(rootPath + "stock/index.html"));
+app.get("/stock", async function (req, res) {
+  async function loadData() {
+    const fileName = __dirname + "/data/stock.json";
+    try {
+      const data = await fs.readFile(fileName, "utf8");
 
-  res.render("pages/stock",{
-    stock:stock,
+      const stockData = JSON.parse(data);
+
+      return stockData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const stockData = await loadData();
+
+  res.render("pages/stock", {
+    stock: stockData,
   });
 });
 
 app.get("/product-detail", function (req, res) {
-  //   res.sendFile(path.join(rootPath + "stock/index.html"));
-
   res.render("pages/product-detail");
 });
 
 app.get("/teste", (req, res) => {
-  res.render("pages/index", {
+  console.log("RES: ", res);
+  console.log("REQ: ", req);
+
+  res.sendFile(path.join(rootPath + "teste/index.html"));
+
+  /*res.render("pages/index", {
     user: user,
+  });*/
+});
+
+app.get("/add-product", (req, res) => {
+  res.render("pages/add-product");
+});
+
+app.post("/add-product", async (req, res) => {
+  async function loadData() {
+    const fileName = __dirname + "/data/stock.json";
+    try {
+      const data = await fs.readFile(fileName, "utf8");
+      const dataJSON = JSON.parse(data);
+
+      const content = [
+        ...dataJSON,
+        {
+          title: req.body.title,
+          qtd: req.body.qtd,
+        },
+      ];
+
+      await fs.writeFile(fileName, JSON.stringify(content));
+
+      const newData = await fs.readFile(fileName, "utf8");
+
+      const stockData = JSON.parse(newData);
+
+      return stockData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const stockData = await loadData();
+
+  res.render("pages/stock", {
+    stock: stockData,
   });
 });
 

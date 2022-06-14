@@ -1,0 +1,52 @@
+[
+    {
+        "img": "https://i.imgur.com/nOFet9u.jpg",
+        "name": "XRD Active Shoes",
+        "price": "$1,999.99"
+    }, 
+    {
+        "img": "https://i.imgur.com/VY0R9aV.png",
+        "name": "Hygen Smart watch",
+        "price": "$123.46"
+    }, 
+    {
+        "img": "https://i.imgur.com/PSGrLdz.jpg",
+        "name": "Acer surface book 2.5",
+        "price": "$1,999.99"
+    }, 
+    {
+        "img": "https://i.imgur.com/OdRSpXG.jpg",
+        "name": "Dell XPS Surface",
+        "price": "$1,245.89"
+    }, 
+    {
+        "img": "https://i.imgur.com/OdRSpXG.jpg",
+        "name": "Acer surface book 5.5",
+        "price": "$2,999.99"
+    }, 
+    {
+        "img": "https://i.imgur.com/X2AwTCY.jpg",
+        "name": "Xps smart watch 5.0",
+        "price": "$999.99"
+    }, 
+    {
+        "img": "https://i.imgur.com/QQwcBpF.png",
+        "name": "Acer surface book 8.5",
+        "price": "$3,999.99"
+    }, 
+    {
+        "img": "https://i.imgur.com/PSGrLdz.jpg",
+        "name": "Tyko Running shoes",
+        "price": "$99.99"
+    }, 
+    {
+        "img": "https://i.imgur.com/m22OQy9.jpg",
+        "name": "Dell surface book 5",
+        "price": "$1,999.99"
+    },
+    {
+        "img": "https://i.imgur.com/OdRSpXG.jpg",
+        "name": "Asus notebook",
+        "price": "$5,999.99"
+    } 
+]
