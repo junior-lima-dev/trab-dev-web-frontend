@@ -36,6 +36,15 @@ const user = [
                 nisi ut aliquip ex ea.
         `,
   },
+  {
+    title: "ASSISTÊNCIA TÉCNICA",
+    description: `
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea.
+        `,
+  }
 ];
 
 const reports = [
@@ -102,7 +111,7 @@ app.get("/login-register", function (req, res) {
 
 app.get("/stock", async function (req, res) {
   async function loadData() {
-    const fileName = __dirname + "/data/stock.json";
+    const fileName = __dirname + "/data/products.json";
     try {
       const data = await fs.readFile(fileName, "utf8");
 
@@ -142,7 +151,7 @@ app.get("/add-product", (req, res) => {
 
 app.post("/add-product", async (req, res) => {
   async function loadData() {
-    const fileName = __dirname + "/data/stock.json";
+    const fileName = __dirname + "/data/products.json";
     try {
       const data = await fs.readFile(fileName, "utf8");
       const dataJSON = JSON.parse(data);
@@ -150,8 +159,10 @@ app.post("/add-product", async (req, res) => {
       const content = [
         ...dataJSON,
         {
-          title: req.body.title,
-          qtd: req.body.qtd,
+          img: "https://i.imgur.com/OdRSpXG.jpg",
+          name: req.body.title,
+          price:'$'+ parseFloat(req.body.value).toFixed(2),
+          quantity:req.body.qtd
         },
       ];
 
@@ -173,6 +184,42 @@ app.post("/add-product", async (req, res) => {
     stock: stockData,
   });
 });
+
+
+app.post("/add-user", async (req, res) => {
+  async function insertuser() {
+    const fileName = __dirname + "/data/users.json";
+    const data = await fs.readFile(fileName, "utf8");
+    const dataJSON = JSON.parse(data);
+    try {
+      const content = [
+        ...dataJSON,
+        {
+          e_mail: req.body.e_mail,
+          pass: req.body.pass,
+          cpf:req.body.cpf,
+          cep:req.body.cep
+        },
+      ];
+      
+
+      await fs.writeFile(fileName, JSON.stringify(content));
+
+
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  await insertuser();
+
+  res.render("pages/login-register", {
+    reports: reports,
+  });
+});
+
+
 
 app.listen(porta, function () {
   console.log("Server listening on port " + porta);

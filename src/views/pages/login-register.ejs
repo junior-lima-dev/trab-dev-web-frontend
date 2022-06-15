@@ -14,20 +14,20 @@
 
         <div style="background-color: lightgrey; padding: 0.5px; min-height: 100%;"></div>
 
-        <div class="form accessible-font-size">
+        <form action="/add-user" method="post" class="form accessible-font-size" >
             <div class="title">
                 QUERO ME CADASTRAR
             </div>
 
-            <input type="text" placeholder="E-mail *" class="input">
-            <input type="password" placeholder="Crie sua senha *" class="input">
+            <input type="email" placeholder="E-mail *" class="input" name="e_mail">
+            <input type="password" placeholder="Crie sua senha *" class="input" name="pass">
             <input type="password" placeholder="Confirme sua senha *" class="input">
-            <input type="password" placeholder="CPF ou CNPJ" class="input">
-            <input type="password" placeholder="CEP" class="input">
+            <input type="number" placeholder="CPF ou CNPJ" class="input" name="cpf">
+            <input type="number" placeholder="CEP" class="input" name ="cep">
 
             <button type="submit" class="button button-outlined">CADASTRAR</button>
         </div>
-    </div>
+    </form>
 </div>
 
 <%- include('../partials/layout-footer') %>
