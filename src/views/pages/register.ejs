@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="login.css" rel="stylesheet">
+    <title>Área de login</title>
+</head>
+<body>
+    <div class="containerLogin accessible-background-color">
+        <div class="form-container">
+            <!-- <form class="form accessible-font-size" action="/login" method="post">
+                <img src="img/logo-preto_v2.png" alt="logo" style="margin-bottom: 20px;"/>
+
+                
+                    <div class="error-alert">Usuário ou senha inválidos</div>
+                
+                <input type="text" placeholder="Digite seu usuário" class="input" name="email">
+                <input type="password" placeholder="Digite sua senha" class="input" name="password">
+    
+                <button type="submit" class="button">ENTRAR</button>
+
+                
+                    <a 
+                    class="link-register"
+                    href="/register"
+                    >
+                        Não possui cadastro?
+                    </a>
+                
+            </form> -->
+    
+            <!-- <div style="background-color: lightgrey; padding: 0.5px; min-height: 100%;"></div>-->
+    
+            <form action="/add-user" method="post" class="form accessible-font-size" >
+                <img src="img/logo-preto_v2.png" alt="logo" style="margin-bottom: 20px;"/>
+                
+                <input type="email" placeholder="E-mail *" class="input" name="e_mail">
+                <input type="password" placeholder="Crie sua senha *" class="input" name="pass">
+                <input type="password" placeholder="Confirme sua senha *" class="input">
+                <input type="number" placeholder="CPF ou CNPJ" class="input" name="cpf">
+                <input type="number" placeholder="CEP" class="input" name ="cep">
+    
+                <button type="submit" class="button button-outlined">CADASTRAR</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

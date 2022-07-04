@@ -1,0 +1,25 @@
+<%- include('../partials/layout-header',{admin, auth}) %>
+
+<div class="contact-container" style="margin-top: 20px;">
+  <div style="text-align:center">
+    <h2>Fale conosco</h2>
+    <p>Envie uma mensagem para tirar suas dúvidas:</p>
+  </div>
+  <div class="contact-row">
+    <div class="contact-column">
+      <img src="https://www.w3schools.com/w3images/map.jpg" style="width:100%">
+    </div>
+    <div class="contact-column">
+      <form>
+        <label for="fname">Nome</label>
+        <input type="text" id="fname" name="firstname" placeholder="Seu nome.." class="contact-def">
+        <label for="lname">Email</label>
+        <input type="text" id="lname" name="lastname" placeholder="Seu email.." class="contact-def">
+        <label for="subject">Mensagem</label>
+        <textarea id="subject" name="subject" placeholder="Escreva algo.." style="height:170px" class="contact-def"></textarea>
+        <input type="submit" value="Enviar" class="contact-button">
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('../partials/layout-footer') %>

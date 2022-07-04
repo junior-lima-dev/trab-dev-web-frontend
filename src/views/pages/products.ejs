@@ -1,4 +1,4 @@
-<%- include('../partials/layout-header') %>
+<%- include('../partials/layout-header',{admin, auth}) %>
 <div class="container-fluid mt-5 mb-5 body accessible-font-size" >
     <div class="row g-2">
         <div class="col-md-3 shadow">
@@ -120,7 +120,7 @@
                                 class="btn btn-primary text-uppercase accessible-font-size"
                                 onclick="location.href='/product-detail'"
                             >
-                                Add to cart
+                                Ver detalhes
                             </button>
                             <div class="add"> 
                                 <span class="product_fav">

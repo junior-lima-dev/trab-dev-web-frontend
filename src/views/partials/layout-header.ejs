@@ -13,6 +13,8 @@
     <link href="products.css" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
     <link href="product-detail.css" rel="stylesheet">
+    <link href="about.css" rel="stylesheet">
+    <link href="contact.css" rel="stylesheet">
     <!-- <link href="stock.css" rel="stylesheet"> -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script type = "text/javascript" src = "js/home.js"></script>
@@ -38,7 +40,13 @@
               <i class="ph-magnifying-glass"></i>
             </button>
           </div>
-          <button class="login-topo" onclick="location.href='/login-register'">Login / Cadastro</button>
+          <% if(!auth) { %>
+            <button class="login-topo" onclick="location.href='/login'">Entrar</button>
+          <% } %>
+          
+          <% if(auth) {%>
+            <button class="login-topo" onclick="location.href='/logout'">Sair</button>
+          <% } %>
         </div>
       </header>
 
@@ -47,10 +55,12 @@
         <div class="barra-nav accessible-font-size" >
           <button class="nav-botao">CATEGORIAS</button>
           <button class="nav-botao" onclick="location.href='/products'">PRODUTOS</button>
-          <button class="nav-botao">PROMOÇÕES</button>
-          <button class="nav-botao" onclick="location.href='/stock'">ESTOQUE</button>
-          <button class="nav-botao">SOBRE</button>
-          <button class="nav-botao">CONTATOS</button>
+          <!-- <button class="nav-botao">PROMOÇÕES</button> -->
+          <%if(admin) {%>
+            <button class="nav-botao" onclick="location.href='/stock'">ESTOQUE</button>  
+          <%}%>
+          <button class="nav-botao" onclick="location.href='/about'">SOBRE</button>
+          <button class="nav-botao" onclick="location.href='/contact'">CONTATOS</button>
         </div>
         <div class="accessible-container">
           <button onclick="changeFontSize()" class="accessible-button">

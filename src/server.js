@@ -2,11 +2,25 @@ const express = require("express");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const fs = require("fs/promises");
+const session = require("express-session");
 
 const app = express();
 const porta = 9090;
 const rootPath = __dirname + "/app/";
+const srcPath = __dirname + "/views";
 app.set("view engine", "ejs");
+app.set("views", srcPath);
+
+const SESSION_TIME_IN_HOURS = 1000 * 60 * 60 * 2; // 2 horas
+
+const {
+  SESS_NAME = "trab-dev-web-frontend",
+  SESS_LIFITIME = SESSION_TIME_IN_HOURS,
+  NODE_ENV = "dev",
+  SESS_SECRET = "123@trab_dev_web!",
+} = process.env;
+
+const IN_PROD = NODE_ENV === "prod";
 
 const user = [
   {
@@ -44,7 +58,7 @@ const user = [
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea.
         `,
-  }
+  },
 ];
 
 const reports = [
@@ -64,7 +78,9 @@ const reports = [
   },
 ];
 
-app.use(express.static("public"));
+console.log();
+
+app.use(express.static(__dirname + "/public"));
 
 app.use(
   express.urlencoded({
@@ -72,13 +88,114 @@ app.use(
   })
 );
 
+app.use(
+  session({
+    name: SESS_NAME,
+    resave: false,
+    saveUninitialized: false,
+    secret: SESS_SECRET,
+    cookie: {
+      maxAge: SESS_LIFITIME,
+      sameSite: true,
+      secure: IN_PROD,
+    },
+  })
+);
+
+function redirectToLogin(req, res, next) {
+  console.log("VALIDATE: ", req.session.auth_token);
+
+  if (!req.session.auth_token) {
+    res.redirect("/login");
+  } else {
+    next();
+  }
+}
+
+function redirectToHome(req, res, next) {
+  if (req.session.auth_token) {
+    res.redirect("/");
+  } else {
+    next();
+  }
+}
+
 app.get("/", function (req, res) {
-  res.render("pages/index", {
+  console.log("DADOS DE SESSÂO:", req.session);
+
+  const { auth_token } = req.session;
+
+  const params = {
     articles: user,
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/index", params);
+});
+
+app.get("/login", redirectToHome, function (req, res) {
+  res.render("pages/login", { error: false });
+});
+
+app.post("/login", async function (req, res) {
+  const { email, password } = req.body;
+
+  async function loadusers() {
+    const fileName = __dirname + "/data/users.json";
+
+    try {
+      const data = await fs.readFile(fileName, "utf8");
+
+      const usersData = JSON.parse(data);
+
+      return usersData;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const users = await loadusers();
+
+  const user = users.filter((user) => {
+    if (user.e_mail === email && user.pass === password) {
+      return user;
+    }
+  });
+
+  console.log("Usuario: ", user);
+
+  if (user.length > 0) {
+    req.session.auth_token = "lkqwerjwkjrwjerlkwe@dsdslkndjkf";
+
+    return res.redirect("/");
+  } else {
+    res.render("pages/login", { error: true });
+  }
+});
+
+app.get("/logout", function (req, res) {
+  console.log;
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("error");
+
+      return res.redirect("/");
+    }
+
+    res.clearCookie(SESS_NAME);
+
+    res.redirect("/");
   });
 });
 
+app.get("/register", function (req, res) {
+  res.render("pages/register");
+});
+
 app.get("/products", async function (req, res) {
+  const { auth_token } = req.session;
+
   async function loadData() {
     const fileName = __dirname + "/data/products.json";
     try {
@@ -94,22 +211,34 @@ app.get("/products", async function (req, res) {
 
   const productsData = await loadData();
 
-  res.render("pages/products", {
+  const params = {
     data: productsData,
-  });
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/products", params);
 });
 
-app.get("/reports", function (req, res) {
-  res.render("pages/reports", {
+app.get("/reports", redirectToLogin, function (req, res) {
+  const { auth_token } = req.session;
+
+  const params = {
     reports: reports,
-  });
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/reports", params);
 });
 
 app.get("/login-register", function (req, res) {
   res.render("pages/login-register");
 });
 
-app.get("/stock", async function (req, res) {
+app.get("/stock", redirectToLogin, async function (req, res) {
+  const { auth_token } = req.session;
+
   async function loadData() {
     const fileName = __dirname + "/data/products.json";
     try {
@@ -125,13 +254,24 @@ app.get("/stock", async function (req, res) {
 
   const stockData = await loadData();
 
-  res.render("pages/stock", {
+  const params = {
     stock: stockData,
-  });
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/stock", params);
 });
 
 app.get("/product-detail", function (req, res) {
-  res.render("pages/product-detail");
+  const { auth_token } = req.session;
+
+  const params = {
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/product-detail", params);
 });
 
 app.get("/teste", (req, res) => {
@@ -145,11 +285,20 @@ app.get("/teste", (req, res) => {
   });*/
 });
 
-app.get("/add-product", (req, res) => {
-  res.render("pages/add-product");
+app.get("/add-product", redirectToLogin, (req, res) => {
+  const { auth_token } = req.session;
+
+  const params = {
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/add-product", params);
 });
 
 app.post("/add-product", async (req, res) => {
+  const { auth_token } = req.session;
+
   async function loadData() {
     const fileName = __dirname + "/data/products.json";
     try {
@@ -161,8 +310,8 @@ app.post("/add-product", async (req, res) => {
         {
           img: "https://i.imgur.com/OdRSpXG.jpg",
           name: req.body.title,
-          price:'$'+ parseFloat(req.body.value).toFixed(2),
-          quantity:req.body.qtd
+          price: "$" + parseFloat(req.body.value).toFixed(2),
+          quantity: req.body.qtd,
         },
       ];
 
@@ -180,11 +329,14 @@ app.post("/add-product", async (req, res) => {
 
   const stockData = await loadData();
 
-  res.render("pages/stock", {
+  const params = {
     stock: stockData,
-  });
-});
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
 
+  res.render("pages/stock", params);
+});
 
 app.post("/add-user", async (req, res) => {
   async function insertuser() {
@@ -197,16 +349,12 @@ app.post("/add-user", async (req, res) => {
         {
           e_mail: req.body.e_mail,
           pass: req.body.pass,
-          cpf:req.body.cpf,
-          cep:req.body.cep
+          cpf: req.body.cpf,
+          cep: req.body.cep,
         },
       ];
-      
 
       await fs.writeFile(fileName, JSON.stringify(content));
-
-
-      
     } catch (err) {
       console.log(err);
     }
@@ -214,12 +362,32 @@ app.post("/add-user", async (req, res) => {
 
   await insertuser();
 
-  res.render("pages/login-register", {
-    reports: reports,
-  });
+  // req.session.auth_token = "123456";
+
+  return res.redirect("/login");
 });
 
+app.get("/about", function (req, res) {
+  const { auth_token } = req.session;
 
+  const params = {
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/about", params);
+});
+
+app.get("/contact", function (req, res) {
+  const { auth_token } = req.session;
+
+  const params = {
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  res.render("pages/contact", params);
+});
 
 app.listen(porta, function () {
   console.log("Server listening on port " + porta);
