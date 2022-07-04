@@ -1,0 +1,27 @@
+<%- include('../partials/layout-header',{admin, auth}) %>
+
+
+<div class = "checkout-content">
+
+    <div class="form-container" >
+        <form action="/add-product" method="post" class="form accessible-font-size">
+            <div class="title">
+                ADICIONAR NOVO PRODUTO
+            </div>
+
+            <input type="text" placeholder="Digite o nome do produto" class="input" name="title">
+            <input type="number" placeholder="Digite a quantidade de produtos" class="input" name="qtd">
+            <input type="number" placeholder="Digite o valor do produto" class="input" name="value">
+            <input type="text" placeholder="Digite a Rua" class="input" name="value">
+            <input type="number" placeholder="Digite o seu CEP" class="input" name="value">
+            <input type="text" placeholder="Digite o nome do titular do cartão" class="input" name="value">
+            <input type="number" placeholder="Digite o número do Cartão" class="input" name="value">
+            <input type="date" placeholder="Digite o vencimento do Cartão" class="input" name="value">
+
+
+            <button type="submit" class="button">INSERIR</button>
+        </form>
+    </div>
+  </div>
+
+  <%- include('../partials/layout-footer') %>

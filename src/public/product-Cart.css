@@ -1,0 +1,11 @@
+body {
+	margin-top: 40px;
+}
+
+.painel-cabeçalho{
+	color: #cb7831; background-color: #f7ead9; border-color: #f1bcbc;
+}
+
+.btnColors{
+	background-color: #db5913; border-color: #0d8fff;
+}

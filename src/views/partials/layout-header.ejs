@@ -10,14 +10,19 @@
     <link rel="stylesheet" href="home.css" />
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <link href= 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css' rel='stylesheet' id='bootstrap-css'>
     <link href="products.css" rel="stylesheet">
     <link href="login.css" rel="stylesheet">
     <link href="product-detail.css" rel="stylesheet">
+    <link href="product-Cart.css" rel="stylesheet">
+    <link href="checkout.css" rel="stylesheet">
     <link href="about.css" rel="stylesheet">
     <link href="contact.css" rel="stylesheet">
     <!-- <link href="stock.css" rel="stylesheet"> -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script type = "text/javascript" src = "js/home.js"></script>
+    <script type = "text/javascript" src = "js/product-detail.js"></script>
+    <script type = "text/javascript" src = "js/product-Cart.js"></script>
   </head>
   <body class="accessible-background-color">
     <div class="cabecario accessible-background-color">
@@ -53,7 +58,7 @@
       <!-- MENU DO TOPO -->
       <nav style="display: flex; flex-direction: row;">
         <div class="barra-nav accessible-font-size" >
-          <button class="nav-botao">CATEGORIAS</button>
+          <!-- <button class="nav-botao">CATEGORIAS</button> -->
           <button class="nav-botao" onclick="location.href='/products'">PRODUTOS</button>
           <!-- <button class="nav-botao">PROMOÇÕES</button> -->
           <%if(admin) {%>

@@ -8,6 +8,7 @@ const app = express();
 const porta = 9090;
 const rootPath = __dirname + "/app/";
 const srcPath = __dirname + "/views";
+console.log(srcPath);
 app.set("view engine", "ejs");
 app.set("views", srcPath);
 
@@ -63,7 +64,7 @@ const user = [
 
 const reports = [
   {
-    title: "VEndas",
+    title: "Vendas",
   },
   {
     title: "Faturamento",
@@ -220,6 +221,27 @@ app.get("/products", async function (req, res) {
   res.render("pages/products", params);
 });
 
+app.get("/product-Cart", function (req, res) {
+  const { auth_token } = req.session;
+
+  const params = {
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  }
+
+  res.render("pages/product-Cart", params);
+});
+
+app.get("/checkout", redirectToLogin, function (req, res) {
+  const { auth_token } = req.session;
+
+  const params = {
+    reports: reports,
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+  res.render("pages/checkout", params);
+})
 app.get("/reports", redirectToLogin, function (req, res) {
   const { auth_token } = req.session;
 
@@ -235,6 +257,8 @@ app.get("/reports", redirectToLogin, function (req, res) {
 app.get("/login-register", function (req, res) {
   res.render("pages/login-register");
 });
+
+
 
 app.get("/stock", redirectToLogin, async function (req, res) {
   const { auth_token } = req.session;
