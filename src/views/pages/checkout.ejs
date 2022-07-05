@@ -3,25 +3,22 @@
 
 <div class = "checkout-content">
 
-    <div class="form-container" >
-        <form action="/add-product" method="post" class="form accessible-font-size">
+    <div class="form-container-checkout">
+        <form action="/checkout" method="post" class="form accessible-font-size">
             <div class="title">
-                ADICIONAR NOVO PRODUTO
+                DADOS DE PAGAMENTO
             </div>
 
-            <input type="text" placeholder="Digite o nome do produto" class="input" name="title">
-            <input type="number" placeholder="Digite a quantidade de produtos" class="input" name="qtd">
-            <input type="number" placeholder="Digite o valor do produto" class="input" name="value">
-            <input type="text" placeholder="Digite a Rua" class="input" name="value">
-            <input type="number" placeholder="Digite o seu CEP" class="input" name="value">
-            <input type="text" placeholder="Digite o nome do titular do cartão" class="input" name="value">
-            <input type="number" placeholder="Digite o número do Cartão" class="input" name="value">
-            <input type="date" placeholder="Digite o vencimento do Cartão" class="input" name="value">
+            <input type="hidden" id="testeJr" placeholder="TESTE" class="input" name="productsData" value="">
+            <input type="number" placeholder="Digite o número do Cartão" class="input" name="campo1">
+            <input type="text" placeholder="Digite o nome do titular do cartão" class="input" name="campo2">
+            <input type="text" placeholder="Digite o vencimento do cartão" class="input" name="campo3">
+            <input type="number" placeholder="Digite o código de segurança do cartão" class="input" name="campo4">
 
 
-            <button type="submit" class="button">INSERIR</button>
+            <button type="submit" class="button">FINALIZAR COMPRA</button>
         </form>
     </div>
-  </div>
+</div>
 
-  <%- include('../partials/layout-footer') %>
+<%- include('../partials/layout-footer') %>

@@ -227,7 +227,7 @@ app.get("/product-Cart", function (req, res) {
   const params = {
     admin: auth_token ? true : false,
     auth: auth_token ? true : false,
-  }
+  };
 
   res.render("pages/product-Cart", params);
 });
@@ -235,13 +235,32 @@ app.get("/product-Cart", function (req, res) {
 app.get("/checkout", redirectToLogin, function (req, res) {
   const { auth_token } = req.session;
 
+  console.log(req.url);
+
   const params = {
     reports: reports,
     admin: auth_token ? true : false,
     auth: auth_token ? true : false,
   };
   res.render("pages/checkout", params);
-})
+});
+
+app.post("/checkout", function (req, res) {
+  const { auth_token } = req.session;
+
+  const params = {
+    reports: reports,
+    admin: auth_token ? true : false,
+    auth: auth_token ? true : false,
+  };
+
+  console.log(req.body);
+  const a = JSON.parse(req.body.productsData);
+  console.log(a[0]);
+
+  res.render("pages/checkout", params);
+});
+
 app.get("/reports", redirectToLogin, function (req, res) {
   const { auth_token } = req.session;
 
@@ -257,8 +276,6 @@ app.get("/reports", redirectToLogin, function (req, res) {
 app.get("/login-register", function (req, res) {
   res.render("pages/login-register");
 });
-
-
 
 app.get("/stock", redirectToLogin, async function (req, res) {
   const { auth_token } = req.session;

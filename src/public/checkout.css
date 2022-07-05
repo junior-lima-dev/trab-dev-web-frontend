@@ -3,3 +3,12 @@
     padding: 20px;
     z-index: 1;
 }
+
+.form-container-checkout {
+    width: 75%;
+    /* height: 600px; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+}

@@ -9,3 +9,9 @@ body {
 .btnColors{
 	background-color: #db5913; border-color: #0d8fff;
 }
+
+.card-cart-products {
+	display: flex; 
+	align-items: center; 
+	justify-content: center;
+}

@@ -1,50 +1,69 @@
+window.addEventListener("load", function () {
+  const element = this.document.getElementById("containerCart");
+  let content = "";
+  let container = "";
+  let totalPrice = 0;
 
-window.addEventListener("load", function (){
+  const storagedProducts = window.localStorage.getItem("products");
 
-    const element= this.document.getElementById("containerCart");
-    console.log(element);
-    element.innerHTML= "<div> outro </div>"
-    let content = "";
-    let container = "";
+  console.log(storagedProducts);
 
-    const storagedProducts = window.localStorage.getItem("products");
-    if (storagedProducts){
-        const products= JSON.parse(storagedProducts);
-        
-        products.map((product) => {
-            content= content + `<div class="row">
+  if (storagedProducts) {
+    const products = JSON.parse(storagedProducts);
+
+    products.map((product, index) => {
+      totalPrice = totalPrice + product.preco;
+      content =
+        content +
+        `<div class="row">
             <div class="col-xs-2"><img class="img-responsive" src="img\\banner-frutas-1.jpg" alt="img">
             </div>
             <div class="col-xs-4">
-                <h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
+                <h4 class="product-name"><strong>${
+                  product.nome
+                }</strong></h4><h4><small>Product description</small></h4>
             </div>
             <div class="col-xs-6">
                 <div class="col-xs-6 text-right">
-                    <h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+                    <h6><strong><span id="referenceProdCart${index + 1}">${
+          product.preco
+        }</span> <span class="text-muted">x</span></strong></h6>
                 </div>
                 <div class="col-xs-4">
-                    <input type="text" class="form-control input-sm" value="1">
+                    <input type="text" id="refProdCartInput${
+                      index + 1
+                    }" class="form-control input-sm" value="1">
                 </div>
                 <div class="col-xs-2">
-                    <button type="button" class="btn btn-link btn-xs">
+					<button type="button" class="btn btn-link btn-xs" onclick="addOneProduct('referenceProdCart${
+            index + 1
+          }', 'refProdCartInput${index + 1}')">
+						<span class="glyphicon glyphicon-plus"> </span>
+					</button>
+					<button type="button" class="btn btn-link btn-xs" onclick="removeOneProduct('referenceProdCart${
+            index + 1
+          }', 'refProdCartInput${index + 1}')">
+						<span class="glyphicon glyphicon-minus"> </span>
+					</button>
+					<button type="button" class="btn btn-link btn-xs">
                         <span class="glyphicon glyphicon-trash"> </span>
                     </button>
                 </div>
             </div>
-        </div>`
-        });
-        container= `<div class="row">
+        </div>`;
+    });
+    container = `<div class="row card-cart-products">
 		<div class="col-xs-8">
 			<div class="panel panel-info">
 				<div class="panel-heading ">
 					<div class="panel-title">
 						<div class="row">
 							<div class="col-xs-6">
-								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Meu carrinho</h5>
 							</div>
 							<div class="col-xs-6">
 								<button type="button" class="btn btn-primary btn-sm btn-block ">
-									<span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+									<span class="glyphicon glyphicon-share-alt"></span> Continuar comprando
 								</button>
 							</div>
 						</div>
@@ -56,115 +75,94 @@ window.addEventListener("load", function (){
 				<div class="panel-footer" style="background-color: #f7ead9;">
 					<div class="row text-center">
 						<div class="col-xs-9">
-							<h4 class="text-right">Total <strong>$50.00</strong></h4>
+							<h4 class="text-right">Valor total: <strong>R$ <span id="refProdCartTotalPrice">${totalPrice}</span></strong></h4>
 						</div>
 						<div class="col-xs-3">
-							<button type="button" class="btn btn-success btn-block" onclick="location.href='/checkout'">
-								Checkout
+							<button type="button" class="btn btn-success btn-block" onclick="updateQtdProducts()">
+								Ir para pagamento
 							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>`
-    
-    }
-    else {
-        container="<div> O carrinho está vazio.</div>"
-    }
+	</div>`;
+  } else {
+    container = "<div> O carrinho está vazio.</div>";
+  }
 
-    element.innerHTML=container;
-    
-    
-})
+  element.innerHTML = container;
+});
 
-{/* <div class="row">
-		<div class="col-xs-8">
-			<div class="panel panel-info">
-				<div class="panel-heading ">
-					<div class="panel-title">
-						<div class="row">
-							<div class="col-xs-6">
-								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
-							</div>
-							<div class="col-xs-6">
-								<button type="button" class="btn btn-primary btn-sm btn-block ">
-									<span class="glyphicon glyphicon-share-alt"></span> Continue shopping
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel-body" id="cartContainer">
-                    <div>dfsdfsdf</div>
-					<!-- <div class="row">
-						<div class="col-xs-2"><img class="img-responsive" src="src\public\img\banner-frutas-1.jpg" alt="img">
-						</div>
-						<div class="col-xs-4">
-							<h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
-						</div>
-						<div class="col-xs-6">
-							<div class="col-xs-6 text-right">
-								<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
-							</div>
-							<div class="col-xs-4">
-								<input type="text" class="form-control input-sm" value="1">
-							</div>
-							<div class="col-xs-2">
-								<button type="button" class="btn btn-link btn-xs">
-									<span class="glyphicon glyphicon-trash"> </span>
-								</button>
-							</div>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-xs-2"><img class="img-responsive" src="src\public\img\banner-frutas-1.jpg" alt="img">
-						</div>
-						<div class="col-xs-4">
-							<h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
-						</div>
-						<div class="col-xs-6">
-							<div class="col-xs-6 text-right">
-								<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
-							</div>
-							<div class="col-xs-4">
-								<input type="text" class="form-control input-sm" value="1">
-							</div>
-							<div class="col-xs-2">
-								<button type="button" class="btn btn-link btn-xs">
-									<span class="glyphicon glyphicon-trash"> </span>
-								</button>
-							</div>
-						</div> -->
-					<!-- </div> -->
-					<hr>
-					<div class="row">
-						<div class="text-center">
-							<div class="col-xs-9">
-								<h6 class="text-right">Added items?</h6>
-							</div>
-							<div class="col-xs-3">
-								<button type="button" class="btn btn-default btn-sm btn-block">
-									Update cart
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer" style="background-color: #f7ead9;">
-					<div class="row text-center">
-						<div class="col-xs-9">
-							<h4 class="text-right">Total <strong>$50.00</strong></h4>
-						</div>
-						<div class="col-xs-3">
-							<button type="button" class="btn btn-success btn-block" onclick="location.href='/checkout'">
-								Checkout
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>*/}
+function addOneProduct(id, id2) {
+  const prodPrice = document.getElementById(id).textContent;
+  const prodQtd = document.getElementById(id2);
+  const totalPriceCurrent = document.getElementById("refProdCartTotalPrice");
+
+  const prodQtdValue = Number(prodQtd.getAttribute("value")) + 1;
+
+  const totalPrice =
+    Number(totalPriceCurrent.textContent) +
+    prodQtdValue * Number(prodPrice) -
+    (prodQtdValue - 1) * Number(prodPrice);
+
+  //   console.log(totalPriceCurrent.textContent, prodPrice, prodQtdValue);
+  //   console.log("total: ", totalPrice);
+
+  prodQtd.setAttribute("value", prodQtdValue);
+  totalPriceCurrent.innerHTML = `<span>${totalPrice}</span>`;
+}
+
+function removeOneProduct(id, id2) {
+  const prodPrice = document.getElementById(id).textContent;
+  const prodQtd = document.getElementById(id2);
+  const totalPriceCurrent = document.getElementById("refProdCartTotalPrice");
+
+  let prodQtdValue = Number(prodQtd.getAttribute("value"));
+
+  //   console.log("*****", prodQtdValue);
+
+  //   console.log(totalPriceCurrent.textContent, prodPrice, prodQtdValue); // 60 - 1*20 + 1-1*20 = 40
+
+  const totalPrice =
+    Number(totalPriceCurrent.textContent) -
+    prodQtdValue * Number(prodPrice) +
+    (prodQtdValue > 0 ? prodQtdValue - 1 : 0) * Number(prodPrice);
+
+  prodQtdValue = prodQtdValue > 0 ? prodQtdValue - 1 : 0;
+  //   console.log("total: ", totalPrice);
+
+  prodQtd.setAttribute("value", prodQtdValue);
+  totalPriceCurrent.innerHTML = `<span>${totalPrice}</span>`;
+}
+
+function updateQtdProducts() {
+  const storagedProducts = window.localStorage.getItem("products");
+
+  if (storagedProducts) {
+    const products = JSON.parse(storagedProducts);
+
+    const updatedProducts = products.map((product, index) => {
+      const prodQtd = document
+        .getElementById("refProdCartInput" + (index + 1))
+        .getAttribute("value");
+
+      console.log("+++++++++++++++++", prodQtd);
+
+      const prod = {
+        ...product,
+        quantidade: prodQtd,
+      };
+
+      return prod;
+    });
+
+    console.log("**********", updatedProducts);
+
+    window.localStorage.setItem("products", JSON.stringify(updatedProducts));
+  } else {
+    console.log("nada");
+  }
+
+  window.location.href = "/checkout";
+}
