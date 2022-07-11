@@ -12,21 +12,23 @@ window.addEventListener("load", function () {
     const products = JSON.parse(storagedProducts);
 
     products.map((product, index) => {
-      totalPrice = totalPrice + product.preco;
+      totalPrice = totalPrice + Number(product.valor);
       content =
         content +
         `<div class="row">
-            <div class="col-xs-2"><img class="img-responsive" src="img\\banner-frutas-1.jpg" alt="img">
+            <div class="col-xs-2"><img class="img-responsive" src="${
+              product.ds_imagem
+            }" alt="img">
             </div>
             <div class="col-xs-4">
                 <h4 class="product-name"><strong>${
                   product.nome
-                }</strong></h4><h4><small>Product description</small></h4>
+                }</strong></h4><h4><small>${product.descricao}</small></h4>
             </div>
             <div class="col-xs-6">
                 <div class="col-xs-6 text-right">
                     <h6><strong><span id="referenceProdCart${index + 1}">${
-          product.preco
+          product.valor
         }</span> <span class="text-muted">x</span></strong></h6>
                 </div>
                 <div class="col-xs-4">
@@ -75,7 +77,9 @@ window.addEventListener("load", function () {
 				<div class="panel-footer" style="background-color: #f7ead9;">
 					<div class="row text-center">
 						<div class="col-xs-9">
-							<h4 class="text-right">Valor total: <strong>R$ <span id="refProdCartTotalPrice">${totalPrice}</span></strong></h4>
+							<h4 class="text-right">Valor total: <strong>R$ <span id="refProdCartTotalPrice">${totalPrice.toFixed(
+                2
+              )}</span></strong></h4>
 						</div>
 						<div class="col-xs-3">
 							<button type="button" class="btn btn-success btn-block" onclick="updateQtdProducts()">
@@ -101,16 +105,16 @@ function addOneProduct(id, id2) {
 
   const prodQtdValue = Number(prodQtd.getAttribute("value")) + 1;
 
+  // console.log(totalPriceCurrent.textContent, prodPrice, prodQtdValue);
+  // console.log("total: ", totalPrice);
+
   const totalPrice =
     Number(totalPriceCurrent.textContent) +
     prodQtdValue * Number(prodPrice) -
     (prodQtdValue - 1) * Number(prodPrice);
 
-  //   console.log(totalPriceCurrent.textContent, prodPrice, prodQtdValue);
-  //   console.log("total: ", totalPrice);
-
   prodQtd.setAttribute("value", prodQtdValue);
-  totalPriceCurrent.innerHTML = `<span>${totalPrice}</span>`;
+  totalPriceCurrent.innerHTML = `<span>${totalPrice.toFixed(2)}</span>`;
 }
 
 function removeOneProduct(id, id2) {
@@ -133,7 +137,7 @@ function removeOneProduct(id, id2) {
   //   console.log("total: ", totalPrice);
 
   prodQtd.setAttribute("value", prodQtdValue);
-  totalPriceCurrent.innerHTML = `<span>${totalPrice}</span>`;
+  totalPriceCurrent.innerHTML = `<span>${totalPrice.toFixed(2)}</span>`;
 }
 
 function updateQtdProducts() {
