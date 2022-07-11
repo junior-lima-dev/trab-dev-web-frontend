@@ -1,0 +1,30 @@
+<%- include('../partials/layout-header',{admin, auth}) %>
+
+    <div class="container-master">
+        <div class="compras-container">
+            <div>
+                <ul>
+                    <% compras.forEach((element)=> {%>
+
+                        <li>
+                            <div class="minhas-compras-container">
+                                <div class="minhas-compras-img">
+                                    <img class="compras-img" src="<%= element.img %>" width="150" height="100" />
+                                </div>
+                                <div class="minhas-compras-txt">
+                                    <h3>
+                                        <%= element.nome %>
+                                    </h3>
+                                    <p>
+                                        <%= element.desc %>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/layout-footer') %>
