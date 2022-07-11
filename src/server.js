@@ -3,6 +3,7 @@ const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const fs = require("fs/promises");
 const session = require("express-session");
+const fetch = require("node-fetch");
 
 const app = express();
 const porta = 9090;
@@ -19,6 +20,7 @@ const {
   SESS_LIFITIME = SESSION_TIME_IN_HOURS,
   NODE_ENV = "dev",
   SESS_SECRET = "123@trab_dev_web!",
+  BASE_URL_API = "https://7677-177-22-40-82.sa.ngrok.io/", // Substituir pelo localhost
 } = process.env;
 
 const IN_PROD = NODE_ENV === "prod";
@@ -207,20 +209,26 @@ app.get("/register", function (req, res) {
 app.get("/products", async function (req, res) {
   const { auth_token } = req.session;
 
-  async function loadData() {
-    const fileName = __dirname + "/data/products.json";
-    try {
-      const data = await fs.readFile(fileName, "utf8");
+  const productsData = await fetch(BASE_URL_API + "products", {
+    method: "GET",
+  }).then(async (res) => await res.json());
 
-      const productsData = JSON.parse(data);
+  console.log("RESPOSTA API: ", productsData);
 
-      return productsData;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function loadData() {
+  //   const fileName = __dirname + "/data/products.json";
+  //   try {
+  //     const data = await fs.readFile(fileName, "utf8");
 
-  const productsData = await loadData();
+  //     const productsData = JSON.parse(data);
+
+  //     return productsData;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  // const productsData = await loadData();
 
   const params = {
     data: productsData,
@@ -314,10 +322,20 @@ app.get("/stock", redirectToLogin, async function (req, res) {
   res.render("pages/stock", params);
 });
 
-app.get("/product-detail", function (req, res) {
+app.get("/product-detail", async function (req, res) {
   const { auth_token } = req.session;
 
+  const { productId } = req.query;
+
+  const productsDetail = await fetch(
+    BASE_URL_API + `products?id=${productId}`,
+    {
+      method: "GET",
+    }
+  ).then(async (res) => await res.json());
+
   const params = {
+    detail: productsDetail[0],
     admin: auth_token ? true : false,
     auth: auth_token ? true : false,
   };
@@ -427,17 +445,6 @@ app.get("/about", function (req, res) {
   };
 
   res.render("pages/about", params);
-});
-
-app.get("/minhas-compras", function (req, res) {
-  const { auth_token } = req.session;
-
-  const params = {
-    admin: auth_token ? true : false,
-    auth: auth_token ? true : false,
-  };
-
-  res.render("pages/minhas-compras", params);
 });
 
 app.get("/contact", function (req, res) {
