@@ -117,7 +117,7 @@
       <button
         class="btn btn-primary text-uppercase accessible-font-size"
         style="background-color: #ec8712; width: 100%"
-        onclick="location.href='/products'"
+        onclick="teste123()"
       >
         Filtrar produtos
       </button>
@@ -127,7 +127,7 @@
             <% data.forEach((element) => {%>
             <div class="col-md-4 ">
                 <div class="product shadow py-4"> <span class="off bg-success">-25% OFF</span>
-                    <div class="text-center"> <img src="<%= element.ds_imagem %>" alt="img" width="200" height="200"> </div>
+                    <div class="text-center"> <img src="<%= element.ds_imagem %>"  style="width: 200px; height: 200px;" alt="img" width="200" height="200"> </div>
                     <div class="about text-center ">
                         <h5 class="accessible-font-size"><%= element.nome %></h5> <span class="accessible-font-size"><%= element.valor %></span>
                     </div>

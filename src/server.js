@@ -144,6 +144,16 @@ app.get("/login", redirectToHome, function (req, res) {
 app.post("/login", async function (req, res) {
   const { email, password } = req.body;
 
+  // const auth = await fetch(BASE_URL_API + "login", {
+  //   method: "POST",
+  //   body: {
+  //     name: "",
+  //     password: "",
+  //   },
+  // }).then(async (res) => await res.json());
+
+  // console.log("Auth: ", auth);
+
   async function loadusers() {
     const fileName = __dirname + "/data/users.json";
 
