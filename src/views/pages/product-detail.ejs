@@ -4,28 +4,28 @@
         <div class="left-container product-detail-default">
             <div class="preview-container">
                 <div class="preview-card-container">
-                    <img class="image" style="border-radius: 8px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/220px-PerfectStrawberry.jpg" alt="">
+                    <img class="image" style="border-radius: 8px; padding: 6px;" src="<%= detail.ds_imagem %>" alt="">
                 </div>
 
                 <div class="preview-card-container">
-                    <img class="image" style="border-radius: 8px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/220px-PerfectStrawberry.jpg" alt="">
+                    <img class="image" style="border-radius: 8px; padding: 6px;" src="<%= detail.ds_imagem %>" alt="">
                 </div>
 
                 <div class="preview-card-container">
-                    <img class="image" style="border-radius: 8px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/220px-PerfectStrawberry.jpg" alt="">
+                    <img class="image" style="border-radius: 8px; padding: 6px;" src="<%= detail.ds_imagem %>" alt="">
                 </div>
 
-                <div class="preview-card-container">
-                    <img class="image" style="border-radius: 8px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/220px-PerfectStrawberry.jpg" alt="">
+                <div class="preview-card-container" onclick="alert('Jesus é tudo!')">
+                    <img class="image" style="border-radius: 8px; padding: 6px;" src="<%= detail.ds_imagem %>" alt="">
                 </div>
             </div>
             
             <div class="image-container">
-                <img src="https://www.bistek.com.br/media/catalog/product/cache/15b2f1f06e1cd470c80b1f3fd7ec8301/4/2/4251.jpg" alt="img">
+                <img src="<%= detail.ds_imagem %>" alt="img">
             </div>
         </div>
         <div class="right-container product-detail-default">
-            <h2>Morangos do campo - Frescos</h2>
+            <h2><%= detail.nome %></h2>
             <div class="assessment-container">
                 <div class="starts-container">
                     <span class="fa fa-star checked" style="display: flex; align-items: center; justify-content: center;"></span>
@@ -38,9 +38,11 @@
                 <div class="assessment-texty">4,5 (150)</div>
             </div>
 
-            <div class="price-text">por <span>R$ 14,99</span></div>
+            <div class="price-text">por <span>R$ <%= detail.valor %></span></div>
 
-            <button class="button-container" onclick="addCart({nome:'produto1', preco: 20, quantidade: 3})">
+            <!-- <input type="hidden" id="prodData" value="<%= JSON.stringify(detail) %>"> -->
+
+            <button class="button-container" onclick="addCart(<%= JSON.stringify(detail) %>)" >
                 <i style="display: flex; align-items: center; justify-content: center; font-size: 30px; margin-right: 10px;" class="fa fa-cart-plus" aria-hidden="true"></i>
                 Adicionar ao carrinho
             </button>
@@ -51,17 +53,17 @@
                 <div class="info-table accessible-font-size ">
                     <div class="info-row">
                         <div class="info-header">Fabricante</div>
-                        <div class="info-header">Granja Andreazza</div>
+                        <div class="info-header"><%= detail.fabricante %></div>
                     </div>
 
                     <div class="info-row">
-                        <div class="info-value">Validade</div>
-                        <div class="info-value">28/05/2022</div>
+                        <div class="info-value">Tipo</div>
+                        <div class="info-value"><%= detail.tipo %></div>
                     </div>
 
                     <div class="info-row">
-                        <div class="info-header">Peso</div>
-                        <div class="info-header">350 g</div>
+                        <div class="info-header">Categoria</div>
+                        <div class="info-header"><%= detail.categoria %></div>
                     </div>
                 </div>
             </div>
