@@ -1,13 +1,52 @@
 ul {
   list-style: none;
   list-style-type: none;
+  background-color: white;
+  padding: 0;
 }
 
-.compras-container {
-  width: 70%;
-  height: 600px;
+li {
+  border: 0.5px solid #ccc;
+}
+
+li:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+li:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.container-master {
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: white;
+  margin-top: 100px;
+}
+
+.compras-container {
+  width: 650px;
+}
+
+.minhas-compras-img {
+  width: 150px;
+  height: 150px;
+}
+
+.minhas-compras-txt {
+  width: 500px;
+  height: 150px;
+  padding-left: 20px;
+}
+
+.compras-img {
+  border-radius: 50%;
+}
+
+.minhas-compras-container {
+  display: flex;
 }
