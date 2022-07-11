@@ -1,0 +1,13 @@
+ul {
+  list-style: none;
+  list-style-type: none;
+}
+
+.compras-container {
+  width: 70%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+}
